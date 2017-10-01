@@ -37,14 +37,17 @@
             @foreach (var item in Model.OrderByDescending(x => x.TournamentID))
             {
                 <tr>
-                    <td>
+                    <td style="vertical-align: middle;">
                         @Html.ActionLink(item.PlayerName, "Details", "Players", new { id = item.PlayerID }, null)
                     </td>
-                    <td>
+                    <td style="vertical-align: middle;">
                         @Html.DisplayFor(modelItem => item.PointsFor)
                     </td>
-                    <td>
+                    <td style="vertical-align: middle;">
                         @Html.DisplayFor(modelItem => item.PointsAgainst)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "MainTournamentScores", new { id = item.TournamentScoresID }, new { @class = "btn btn-sm btn-default" })
                     </td>
                 </tr>
             }

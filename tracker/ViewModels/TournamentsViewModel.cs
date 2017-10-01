@@ -17,6 +17,7 @@ namespace tracker.ViewModels
         [DisplayName("Opponent")]
         public string TournamentName { get; set; }// Tournament
         public int TournamentID { get; set; }
+        public int TournamentScoresID { get; set; }
         [DisplayName("Points For")]
         public Nullable<int> PointsFor { get; set; }
         [DisplayName("Points Against")]

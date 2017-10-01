@@ -28,3 +28,7 @@ C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\obj\Release\tracker.csprojResolveAssemblyReference.cache
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\obj\Release\tracker.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\obj\Release\tracker.pdb
+C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.dll
+C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.Mvc.dll
+C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.xml
+C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.Mvc.xml

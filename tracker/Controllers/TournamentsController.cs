@@ -60,6 +60,7 @@ namespace tracker.Controllers
                                       l.LeagueName,
                                       t.TournamentID,
                                       t.TournamentName,
+                                      ts.TournamentScoresID,
                                       ts.PointsFor,
                                       ts.PointsAgainst
                                   });
@@ -74,6 +75,7 @@ namespace tracker.Controllers
                     tvm.LeagueName = item.LeagueName;
                     tvm.TournamentID = item.TournamentID;
                     tvm.TournamentName = item.TournamentName;
+                    tvm.TournamentScoresID = item.TournamentScoresID;
                     tvm.PointsFor = item.PointsFor;
                     tvm.PointsAgainst = item.PointsAgainst;
                     TournamentsVW.Add(tvm);
