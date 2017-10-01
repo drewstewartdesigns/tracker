@@ -1,0 +1,126 @@
+﻿@model IEnumerable<tracker.Models.Player>
+
+@{
+    ViewBag.Title = "Relentless Ones Players";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2><small>Relentless Ones</small></h2>
+        <h1>Players <span class="pull-right">@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })</span></h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="nav nav-tabs" style="margin-top: 40px;">
+            <li role="presentation" class="active"><a href="#activePlayers" data-toggle="tab">Active Players</a></li>
+            <li role="presentation"><a href="#benchedPlayers" data-toggle="tab">Benched Players</a></li>
+            <li role="presentation"><a href="#kickedPlayers" data-toggle="tab">Graveyard</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="tab-content">
+            <div class="tab-pane active" id="activePlayers">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PlayerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChatName)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.Where(item => item.StatusID == 1))
+                    {
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.ChatName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.PlayerID }, new { @class = "btn btn-default btn-sm" })
+                                @Html.ActionLink("Details", "Details", new { id = item.PlayerID }, new { @class = "btn btn-primary btn-sm" })
+                                @*@Html.ActionLink("Delete", "Delete", new { id = item.PlayerID })*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+            <div class="tab-pane" id="benchedPlayers">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PlayerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChatName)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.Where(item => item.StatusID == 2))
+                    {
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.ChatName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.PlayerID }, new { @class = "btn btn-default btn-sm" })
+                                @Html.ActionLink("Details", "Details", new { id = item.PlayerID }, new { @class = "btn btn-primary btn-sm" })
+                                @*@Html.ActionLink("Delete", "Delete", new { id = item.PlayerID })*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+            <div class="tab-pane" id="kickedPlayers">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PlayerName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChatName)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.Where(item => item.StatusID == 3))
+                    {
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.ChatName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.PlayerID }, new { @class = "btn btn-default btn-sm" })
+                                @Html.ActionLink("Details", "Details", new { id = item.PlayerID }, new { @class = "btn btn-primary btn-sm" })
+                                @*@Html.ActionLink("Delete", "Delete", new { id = item.PlayerID })*@
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

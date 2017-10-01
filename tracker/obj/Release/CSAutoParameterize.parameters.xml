@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="trackerDBEntities-Web.config Connection String" description="trackerDBEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.TrackerModel.csdl|res://*/Models.TrackerModel.ssdl|res://*/Models.TrackerModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=198.71.225.145;initial catalog=trackerDB;persist security info=True;user id=dstewartadmin;password=Ninja1668!;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\dstewart\.OHIO-CPA\\Documents\\Visual\ Studio\ 2013\\Projects\\tracker\\tracker\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='trackerDBEntities']/@connectionString" />
+  </parameter>
+</parameters>

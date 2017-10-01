@@ -1,0 +1,122 @@
+﻿@model IEnumerable<tracker.ViewModels.PlayersViewModel>
+
+@{
+    ViewBag.Title = "Relentless Ones Player Details";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <p style="margin-top: 20px;">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>
+            @Html.DisplayFor(model => model.FirstOrDefault().PlayerName) <small>Details</small>
+        </h1>
+    </div>
+    <hr class="visible-xs" />
+    <div class="col-md-6">
+        <ul class="list-unstyled">
+            <li>
+                <b>@Html.DisplayNameFor(model => model.PlayerName): </b> @Html.DisplayFor(model => model.FirstOrDefault().PlayerName)
+            </li>
+            <li>
+                <b>@Html.DisplayNameFor(model => model.ChatName): </b> @Html.DisplayFor(model => model.FirstOrDefault().ChatName)
+            </li>
+            <li>
+                <b>@Html.DisplayNameFor(model => model.LeagueName): </b> @Html.DisplayFor(model => model.FirstOrDefault().LeagueName)
+            </li>
+            <li>
+                <b>@Html.DisplayNameFor(model => model.StatusName): </b> @Html.DisplayFor(model => model.FirstOrDefault().StatusName)
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-6 text-center">
+        <h2>@Html.DisplayFor(model => model.FirstOrDefault().TotalPointsFor)</h2>
+        <b>Total Points Scored</b>
+    </div>
+    <div class="col-xs-6 text-center">
+        <h2>@Html.DisplayFor(model => model.FirstOrDefault().AveragePointsFor)</h2>
+        <b>Average Points Scored</b>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 text-center">
+        <h2>@Html.DisplayFor(model => model.FirstOrDefault().TotalPointsAgainst)</h2>
+        <b>Total Points Allowed</b>
+    </div>
+    <div class="col-xs-6 text-center">
+        <h2>@Html.DisplayFor(model => model.FirstOrDefault().AveragePointsAgainst)</h2>
+        <b>Average Points Allowed</b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-striped" style="margin-top: 40px;">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TournamentID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TournamentName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PointsFor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PointsAgainst)
+                </th>
+            </tr>
+
+            @foreach (var x in Model.OrderByDescending(x => x.TournamentID))
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => x.TournamentID)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => x.TournamentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => x.PointsFor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => x.PointsAgainst)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <p>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+    <div class="col-sm-6">
+        <p class="text-right">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.FirstOrDefault().PlayerID }, new { @class = "btn btn-default" })
+        </p>
+    </div>
+</div>

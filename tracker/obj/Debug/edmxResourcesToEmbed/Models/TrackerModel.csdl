@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="trackerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="League">
+    <Key>
+      <PropertyRef Name="LeagueID" />
+    </Key>
+    <Property Name="LeagueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeagueName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Players" Relationship="Self.FK_Player_League" FromRole="League" ToRole="Player" />
+    <NavigationProperty Name="TournamentScores" Relationship="Self.FK_TournamentScores_League" FromRole="League" ToRole="TournamentScores" />
+    <NavigationProperty Name="Tournaments" Relationship="trackerDBModel.FK_Tournament_League" FromRole="League" ToRole="Tournament" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="PlayerID" />
+    </Key>
+    <Property Name="PlayerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StatusID" Type="Int32" />
+    <Property Name="LeagueID" Type="Int32" />
+    <NavigationProperty Name="League" Relationship="Self.FK_Player_League" FromRole="Player" ToRole="League" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Player_Status" FromRole="Player" ToRole="Status" />
+    <NavigationProperty Name="TournamentScores" Relationship="Self.FK_TournamentScores_Player" FromRole="Player" ToRole="TournamentScores" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Players" Relationship="Self.FK_Player_Status" FromRole="Status" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Tournament">
+    <Key>
+      <PropertyRef Name="TournamentID" />
+    </Key>
+    <Property Name="TournamentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TournamentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TournamentScores" Relationship="Self.FK_TournamentScores_Tournament" FromRole="Tournament" ToRole="TournamentScores" />
+    <Property Name="LeagueID" Type="Int32" />
+    <NavigationProperty Name="League" Relationship="trackerDBModel.FK_Tournament_League" FromRole="Tournament" ToRole="League" />
+  </EntityType>
+  <EntityType Name="TournamentScore">
+    <Key>
+      <PropertyRef Name="TournamentScoresID" />
+    </Key>
+    <Property Name="TournamentScoresID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TournamentID" Type="Int32" />
+    <Property Name="PlayerID" Type="Int32" />
+    <Property Name="PointsFor" Type="Int32" />
+    <Property Name="PointsAgainst" Type="Int32" />
+    <Property Name="LeagueID" Type="Int32" />
+    <NavigationProperty Name="League" Relationship="Self.FK_TournamentScores_League" FromRole="TournamentScores" ToRole="League" />
+    <NavigationProperty Name="Player" Relationship="Self.FK_TournamentScores_Player" FromRole="TournamentScores" ToRole="Player" />
+    <NavigationProperty Name="Tournament" Relationship="Self.FK_TournamentScores_Tournament" FromRole="TournamentScores" ToRole="Tournament" />
+  </EntityType>
+  <Association Name="FK_Player_League">
+    <End Role="League" Type="Self.League" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="LeagueID" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="LeagueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentScores_League">
+    <End Role="League" Type="Self.League" Multiplicity="0..1" />
+    <End Role="TournamentScores" Type="Self.TournamentScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="LeagueID" />
+      </Principal>
+      <Dependent Role="TournamentScores">
+        <PropertyRef Name="LeagueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentScores_Player">
+    <End Role="Player" Type="Self.Player" Multiplicity="0..1" />
+    <End Role="TournamentScores" Type="Self.TournamentScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="PlayerID" />
+      </Principal>
+      <Dependent Role="TournamentScores">
+        <PropertyRef Name="PlayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentScores_Tournament">
+    <End Role="Tournament" Type="Self.Tournament" Multiplicity="0..1" />
+    <End Role="TournamentScores" Type="Self.TournamentScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="TournamentID" />
+      </Principal>
+      <Dependent Role="TournamentScores">
+        <PropertyRef Name="TournamentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="trackerDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Leagues" EntityType="Self.League" />
+    <EntitySet Name="Players" EntityType="Self.Player" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="Tournaments" EntityType="Self.Tournament" />
+    <EntitySet Name="TournamentScores" EntityType="Self.TournamentScore" />
+    <AssociationSet Name="FK_Player_League" Association="Self.FK_Player_League">
+      <End Role="League" EntitySet="Leagues" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentScores_League" Association="Self.FK_TournamentScores_League">
+      <End Role="League" EntitySet="Leagues" />
+      <End Role="TournamentScores" EntitySet="TournamentScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_Status" Association="Self.FK_Player_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentScores_Player" Association="Self.FK_TournamentScores_Player">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="TournamentScores" EntitySet="TournamentScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentScores_Tournament" Association="Self.FK_TournamentScores_Tournament">
+      <End Role="Tournament" EntitySet="Tournaments" />
+      <End Role="TournamentScores" EntitySet="TournamentScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tournament_League" Association="trackerDBModel.FK_Tournament_League">
+      <End Role="League" EntitySet="Leagues" />
+      <End Role="Tournament" EntitySet="Tournaments" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Tournament_League">
+    <End Type="trackerDBModel.League" Role="League" Multiplicity="0..1" />
+    <End Type="trackerDBModel.Tournament" Role="Tournament" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="League">
+        <PropertyRef Name="LeagueID" />
+      </Principal>
+      <Dependent Role="Tournament">
+        <PropertyRef Name="LeagueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

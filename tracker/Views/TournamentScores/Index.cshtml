@@ -1,0 +1,55 @@
+﻿@model IEnumerable<tracker.Models.TournamentScore>
+
+@{
+    ViewBag.Title = "Relentless Ones 0.5 Tournament Scores";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Tournament Scores <small>relentless ones 0.5</small></h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Player.PlayerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tournament.TournamentName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PointsFor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PointsAgainst)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Player.PlayerName)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Tournament.TournamentName)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.PointsFor)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.PointsAgainst)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TournamentScoresID }, new { @class = "btn btn-sm btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TournamentScoresID }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

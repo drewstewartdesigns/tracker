@@ -1,0 +1,58 @@
+﻿@model tracker.Models.TournamentScore
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TournamentScore</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PointsFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointsFor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PointsAgainst)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointsAgainst)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.League.LeagueName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.League.LeagueName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Player.PlayerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Player.PlayerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tournament.TournamentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tournament.TournamentName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TournamentScoresID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

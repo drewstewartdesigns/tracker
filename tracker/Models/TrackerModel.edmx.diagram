@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="28db1539f9594abdb5d04eb64e2f91b0" Name="Diagram1">
+        <EntityTypeShape EntityType="trackerDBModel.League" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="trackerDBModel.Player" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="trackerDBModel.Status" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="trackerDBModel.Tournament" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="trackerDBModel.TournamentScore" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="trackerDBModel.FK_Player_League" ManuallyRouted="false" />
+        <AssociationConnector Association="trackerDBModel.FK_TournamentScores_League" ManuallyRouted="false" />
+        <AssociationConnector Association="trackerDBModel.FK_Player_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="trackerDBModel.FK_TournamentScores_Player" ManuallyRouted="false" />
+        <AssociationConnector Association="trackerDBModel.FK_TournamentScores_Tournament" ManuallyRouted="false" />
+        <AssociationConnector Association="trackerDBModel.FK_Tournament_League" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
