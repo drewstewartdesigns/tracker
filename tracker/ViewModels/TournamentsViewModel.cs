@@ -21,5 +21,7 @@ namespace tracker.ViewModels
         public Nullable<int> PointsFor { get; set; }
         [DisplayName("Points Against")]
         public Nullable<int> PointsAgainst { get; set; }
+        public Nullable<int> TotalPointsFor { get; set; }
+        public Nullable<int> TotalPointsAgainst { get; set; }
     }
 }

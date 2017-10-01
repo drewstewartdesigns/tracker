@@ -18,8 +18,20 @@ namespace tracker.Controllers
         // GET: Tournaments
         public ActionResult Index()
         {
+            List<TournamentsViewModel> TournamentsVW = new List<TournamentsViewModel>();
+
             var tournaments = db.Tournaments.Include(t => t.League).Where(t => t.LeagueID == 2).OrderByDescending(t => t.TournamentID);
-            return View(tournaments.ToList());
+
+            foreach (var tournament in tournaments)
+            {
+                TournamentsViewModel tvm = new TournamentsViewModel();
+                tvm.TournamentID = tournament.TournamentID;
+                tvm.TournamentName = tournament.TournamentName;
+                tvm.TotalPointsFor = tournament.TournamentScores.Sum(x => x.PointsFor);
+                tvm.TotalPointsAgainst = tournament.TournamentScores.Sum(x => x.PointsAgainst);
+                TournamentsVW.Add(tvm);
+            }
+            return View(TournamentsVW.ToList());
         }
 
         // GET: Tournaments/Details/5

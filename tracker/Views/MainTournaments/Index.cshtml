@@ -1,4 +1,4 @@
-﻿@model IEnumerable<tracker.Models.Tournament>
+﻿@model IEnumerable<tracker.ViewModels.TournamentsViewModel>
 
 @{
     ViewBag.Title = "Relentless Ones Tournaments";
@@ -18,23 +18,23 @@
                 <th>
                     @Html.DisplayNameFor(model => model.TournamentName)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.League.LeagueName)
+                <th class="text-center">
+                    Outcome
                 </th>
                 <th></th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
+                <tr class="@(item.TotalPointsFor > item.TotalPointsAgainst ? "success" : "danger")">
                     <td style="vertical-align: middle;">
                         @Html.ActionLink(item.TournamentName, "Details", new { id = item.TournamentID })
                     </td>
-                    <td style="vertical-align: middle;">
-                        @Html.DisplayFor(modelItem => item.League.LeagueName)
+                    <td class="text-center" style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.TotalPointsFor) - @Html.DisplayFor(modelItem => item.TotalPointsAgainst)
                     </td>
-                    <td>
-                        @Html.ActionLink("Add Scores", "Create", "MainTournamentScores", new { id = item.TournamentID }, new { @class = "btn btn-sm btn-success" }) 
+                    <td class="text-right">
+                        @Html.ActionLink("Add Scores", "Create", "MainTournamentScores", new { id = item.TournamentID }, new { @class = "btn btn-sm btn-success" })
                         @Html.ActionLink("Edit", "Edit", new { id = item.TournamentID }, new { @class = "btn btn-sm btn-default" })
                     </td>
                 </tr>
