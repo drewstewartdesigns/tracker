@@ -95,7 +95,7 @@ namespace tracker.Controllers
             {
                 db.Entry(tournamentScore).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Tournaments", new {id=tournamentScore.TournamentID});
             }
             ViewBag.LeagueID = new SelectList(db.Leagues, "LeagueID", "LeagueName", tournamentScore.LeagueID);
             ViewBag.PlayerID = new SelectList(db.Players, "PlayerID", "PlayerName", tournamentScore.PlayerID);

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<tracker.ViewModels.TournamentsViewModel>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<tracker.ViewModels.TournamentsViewModel>
 
 @{
     ViewBag.Title = "Relentless Ones 0.5 Tournaments";
@@ -16,7 +17,7 @@
         <table class="table table-striped">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.TournamentName)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentName)
                 </th>
                 <th class="text-center">
                     Outcome
@@ -26,11 +27,11 @@
 
             @foreach (var item in Model)
             {
-                <tr class="@(item.TotalPointsFor > item.TotalPointsAgainst ? "success" : "danger")">
+                <tr>
                     <td style="vertical-align: middle;">
                         @Html.ActionLink(item.TournamentName, "Details", new { id = item.TournamentID })
                     </td>
-                    <td class="text-center" style="vertical-align: middle;">
+                    <td class="text-center @(item.TotalPointsFor > item.TotalPointsAgainst ? "success" : "danger")" style="vertical-align: middle;">
                         @Html.DisplayFor(modelItem => item.TotalPointsFor) - @Html.DisplayFor(modelItem => item.TotalPointsAgainst)
                     </td>
                     <td class="text-right">
@@ -42,5 +43,10 @@
 
         </table>
     </div>
+    <div class="col-xs-12">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
 </div>
+
+
 

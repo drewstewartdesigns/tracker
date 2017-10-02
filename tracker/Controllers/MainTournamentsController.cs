@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using tracker.Models;
 using tracker.ViewModels;
+using PagedList;
 
 namespace tracker.Controllers
 {
@@ -16,7 +17,7 @@ namespace tracker.Controllers
         private trackerDBEntities db = new trackerDBEntities();
 
         // GET: MainTournaments
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             List<TournamentsViewModel> TournamentsVW = new List<TournamentsViewModel>();
 
@@ -31,7 +32,9 @@ namespace tracker.Controllers
                 tvm.TotalPointsAgainst = tournament.TournamentScores.Sum(x => x.PointsAgainst);
                 TournamentsVW.Add(tvm);
             }
-            return View(TournamentsVW.ToList());
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(TournamentsVW.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: MainTournaments/Details/5

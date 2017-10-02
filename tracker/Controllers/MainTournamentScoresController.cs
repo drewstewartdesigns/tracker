@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using tracker.Models;
 
 namespace tracker.Controllers
@@ -94,7 +95,7 @@ namespace tracker.Controllers
             {
                 db.Entry(tournamentScore).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "MainTournaments", new { id = tournamentScore.TournamentID });
             }
             ViewBag.LeagueID = new SelectList(db.Leagues, "LeagueID", "LeagueName", tournamentScore.LeagueID);
             ViewBag.PlayerID = new SelectList(db.Players, "PlayerID", "PlayerName", tournamentScore.PlayerID);
