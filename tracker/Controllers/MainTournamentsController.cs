@@ -92,6 +92,7 @@ namespace tracker.Controllers
         public ActionResult Create()
         {
             ViewBag.LeagueID = new SelectList(db.Leagues, "LeagueID", "LeagueName");
+
             return View();
         }
 
