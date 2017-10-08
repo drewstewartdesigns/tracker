@@ -1,4 +1,5 @@
-﻿@model IEnumerable<tracker.ViewModels.PlayersViewModel>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<tracker.ViewModels.PlayersViewModel>
 
 @{
     ViewBag.Title = "Relentless Ones Player Details";
@@ -22,16 +23,16 @@
     <div class="col-md-6">
         <ul class="list-unstyled">
             <li>
-                <b>@Html.DisplayNameFor(model => model.PlayerName): </b> @Html.DisplayFor(model => model.FirstOrDefault().PlayerName)
+                <b>@Html.DisplayNameFor(model => model.FirstOrDefault().PlayerName): </b> @Html.DisplayFor(model => model.FirstOrDefault().PlayerName)
             </li>
             <li>
-                <b>@Html.DisplayNameFor(model => model.ChatName): </b> @Html.DisplayFor(model => model.FirstOrDefault().ChatName)
+                <b>@Html.DisplayNameFor(model => model.FirstOrDefault().ChatName): </b> @Html.DisplayFor(model => model.FirstOrDefault().ChatName)
             </li>
             <li>
-                <b>@Html.DisplayNameFor(model => model.LeagueName): </b> @Html.DisplayFor(model => model.FirstOrDefault().LeagueName)
+                <b>@Html.DisplayNameFor(model => model.FirstOrDefault().LeagueName): </b> @Html.DisplayFor(model => model.FirstOrDefault().LeagueName)
             </li>
             <li>
-                <b>@Html.DisplayNameFor(model => model.StatusName): </b> @Html.DisplayFor(model => model.FirstOrDefault().StatusName)
+                <b>@Html.DisplayNameFor(model => model.FirstOrDefault().StatusName): </b> @Html.DisplayFor(model => model.FirstOrDefault().StatusName)
             </li>
         </ul>
     </div>
@@ -74,16 +75,16 @@
         <table class="table table-striped" style="margin-top: 40px;">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.TournamentID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentID)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TournamentName)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PointsFor)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().PointsFor)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PointsAgainst)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().PointsAgainst)
                 </th>
             </tr>
 
@@ -105,6 +106,9 @@
                 </tr>
             }
         </table>
+    </div>
+    <div class="col-xs-12">
+        @Html.PagedListPager(Model, page => Url.Action("Details", new { page }))
     </div>
 </div>
 

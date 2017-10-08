@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using tracker.Models;
 using tracker.ViewModels;
+using PagedList;
 
 namespace tracker.Controllers
 {
@@ -23,7 +24,7 @@ namespace tracker.Controllers
         }
 
         // GET: MainPlayers/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? page)
         {
             if (id == null)
             {
@@ -84,7 +85,9 @@ namespace tracker.Controllers
                 PlayersVW.Add(tvm);
             }
 
-            return View(PlayersVW.ToList());
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(PlayersVW.OrderByDescending(x => x.TournamentID).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: MainPlayers/Create

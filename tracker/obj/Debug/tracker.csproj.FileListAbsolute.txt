@@ -31,4 +31,3 @@ C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.Mvc.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.xml
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.Mvc.xml
-C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\obj\Debug\tracker.csprojResolveAssemblyReference.cache
