@@ -28,7 +28,7 @@ namespace tracker.ViewModels
         public Nullable<int> PointsAgainst { get; set; }// TournamentScores
         public Nullable<int> TotalPointsFor { get; set; }
         public Nullable<int> TotalPointsAgainst { get; set; }
-        public double AveragePointsFor { get; set; }
-        public double AveragePointsAgainst { get; set; }
+        public decimal AveragePointsFor { get; set; }
+        public decimal AveragePointsAgainst { get; set; }
     }
 }

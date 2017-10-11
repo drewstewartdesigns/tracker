@@ -80,8 +80,8 @@ namespace tracker.Controllers
                 {
                     tvm.TotalPointsFor = playerStat.TournamentScores.Sum(x => x.PointsFor);
                     tvm.TotalPointsAgainst = playerStat.TournamentScores.Sum(x => x.PointsAgainst);
-                    tvm.AveragePointsFor = Math.Floor(playerStat.TournamentScores.Average(x => Convert.ToDouble(x.PointsFor)));
-                    tvm.AveragePointsAgainst = Math.Floor(playerStat.TournamentScores.Average(x => Convert.ToDouble(x.PointsAgainst)));
+                    tvm.AveragePointsFor = playerStat.TournamentScores.Where(ts => ts.PointsFor != null).Average(x => Convert.ToDecimal(x.PointsFor));
+                    tvm.AveragePointsAgainst = playerStat.TournamentScores.Where(ts => ts.PointsAgainst != null).Average(x => Convert.ToDecimal(x.PointsAgainst));
                 }
 
                 PlayersVW.Add(tvm);
