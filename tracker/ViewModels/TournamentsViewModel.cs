@@ -16,6 +16,7 @@ namespace tracker.ViewModels
         public string LeagueName { get; set; }// League
         [DisplayName("Opponent")]
         public string TournamentName { get; set; }// Tournament
+        public Nullable<int> Rank { get; set; } 
         public int TournamentID { get; set; }
         public int TournamentScoresID { get; set; }
         [DisplayName("Points For")]
@@ -24,5 +25,6 @@ namespace tracker.ViewModels
         public Nullable<int> PointsAgainst { get; set; }
         public Nullable<int> TotalPointsFor { get; set; }
         public Nullable<int> TotalPointsAgainst { get; set; }
+        public bool MissedDrives { get; set; }
     }
 }

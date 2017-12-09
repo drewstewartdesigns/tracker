@@ -40,6 +40,7 @@
     <NavigationProperty Name="TournamentScores" Relationship="Self.FK_TournamentScores_Tournament" FromRole="Tournament" ToRole="TournamentScores" />
     <Property Name="LeagueID" Type="Int32" />
     <NavigationProperty Name="League" Relationship="trackerDBModel.FK_Tournament_League" FromRole="Tournament" ToRole="League" />
+    <Property Name="Rank" Type="Int32" />
   </EntityType>
   <EntityType Name="TournamentScore">
     <Key>
@@ -54,6 +55,7 @@
     <NavigationProperty Name="League" Relationship="Self.FK_TournamentScores_League" FromRole="TournamentScores" ToRole="League" />
     <NavigationProperty Name="Player" Relationship="Self.FK_TournamentScores_Player" FromRole="TournamentScores" ToRole="Player" />
     <NavigationProperty Name="Tournament" Relationship="Self.FK_TournamentScores_Tournament" FromRole="TournamentScores" ToRole="Tournament" />
+    <Property Name="MissedDrives" Type="Boolean" />
   </EntityType>
   <Association Name="FK_Player_League">
     <End Role="League" Type="Self.League" Multiplicity="0..1">

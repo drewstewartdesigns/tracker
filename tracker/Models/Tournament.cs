@@ -21,12 +21,14 @@ namespace tracker.Models
         {
             this.TournamentScores = new HashSet<TournamentScore>();
         }
-
+    
         public int TournamentID { get; set; }
-        [DisplayName("Opponent")]
+        [DisplayName("Opponent Name")]
         public string TournamentName { get; set; }
         [DisplayName("League")]
         public Nullable<int> LeagueID { get; set; }
+        [DisplayName("Opponent Rank")]
+        public Nullable<int> Rank { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TournamentScore> TournamentScores { get; set; }

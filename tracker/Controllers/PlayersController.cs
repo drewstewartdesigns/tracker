@@ -60,7 +60,8 @@ namespace tracker.Controllers
                     ts.TournamentID,
                     ts.PointsFor,
                     ts.PointsAgainst,
-                    t.TournamentName
+                    t.TournamentName,
+                    t.Rank
                 });
 
             foreach (var item in playerDetails)
@@ -73,6 +74,7 @@ namespace tracker.Controllers
                 tvm.LeagueName = item.LeagueName;
                 tvm.TournamentID = item.TournamentID.Value;
                 tvm.TournamentName = item.TournamentName;
+                tvm.Rank = item.Rank;
                 tvm.PointsFor = item.PointsFor;
                 tvm.PointsAgainst = item.PointsAgainst;
 
@@ -82,6 +84,8 @@ namespace tracker.Controllers
                     tvm.TotalPointsAgainst = playerStat.TournamentScores.Sum(x => x.PointsAgainst);
                     tvm.AveragePointsFor = playerStat.TournamentScores.Where(ts => ts.PointsFor != null).Average(x => Convert.ToDecimal(x.PointsFor));
                     tvm.AveragePointsAgainst = playerStat.TournamentScores.Where(ts => ts.PointsAgainst != null).Average(x => Convert.ToDecimal(x.PointsAgainst));
+
+                    ViewBag.MissedDrives = playerStat.TournamentScores.Count(score => score.MissedDrives);
                 }
 
                 PlayersVW.Add(tvm);

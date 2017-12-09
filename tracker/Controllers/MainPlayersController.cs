@@ -58,7 +58,8 @@ namespace tracker.Controllers
                                      ts.TournamentID,
                                      ts.PointsFor,
                                      ts.PointsAgainst,
-                                     t.TournamentName
+                                     t.TournamentName,
+                                     t.Rank
                                  });
 
             foreach (var item in playerDetails)
@@ -71,6 +72,7 @@ namespace tracker.Controllers
                 tvm.LeagueName = item.LeagueName;
                 tvm.TournamentID = item.TournamentID.Value;
                 tvm.TournamentName = item.TournamentName;
+                tvm.Rank = item.Rank;
                 tvm.PointsFor = item.PointsFor;
                 tvm.PointsAgainst = item.PointsAgainst;
 

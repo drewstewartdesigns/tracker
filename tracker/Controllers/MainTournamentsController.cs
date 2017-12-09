@@ -28,6 +28,7 @@ namespace tracker.Controllers
                 TournamentsViewModel tvm = new TournamentsViewModel();
                 tvm.TournamentID = tournament.TournamentID;
                 tvm.TournamentName = tournament.TournamentName;
+                tvm.Rank = tournament.Rank;
                 tvm.TotalPointsFor = tournament.TournamentScores.Sum(x => x.PointsFor);
                 tvm.TotalPointsAgainst = tournament.TournamentScores.Sum(x => x.PointsAgainst);
                 TournamentsVW.Add(tvm);
@@ -62,9 +63,11 @@ namespace tracker.Controllers
                                       l.LeagueName,
                                       t.TournamentID,
                                       t.TournamentName,
+                                      t.Rank,
                                       ts.TournamentScoresID,
                                       ts.PointsFor,
-                                      ts.PointsAgainst
+                                      ts.PointsAgainst,
+                                      ts.MissedDrives
                                   });
 
             foreach (var item in tourneyDetails)
@@ -77,9 +80,11 @@ namespace tracker.Controllers
                     tvm.LeagueName = item.LeagueName;
                     tvm.TournamentID = item.TournamentID;
                     tvm.TournamentName = item.TournamentName;
+                    tvm.Rank = item.Rank;
                     tvm.TournamentScoresID = item.TournamentScoresID;
                     tvm.PointsFor = item.PointsFor;
                     tvm.PointsAgainst = item.PointsAgainst;
+                    tvm.MissedDrives = item.MissedDrives;
                     TournamentsVW.Add(tvm);
                 }
             }
@@ -101,7 +106,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TournamentID,TournamentName,LeagueID")] Tournament tournament)
+        public ActionResult Create([Bind(Include = "TournamentID,TournamentName,LeagueID,Rank")] Tournament tournament)
         {
             if (ModelState.IsValid)
             {
@@ -135,7 +140,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TournamentID,TournamentName,LeagueID")] Tournament tournament)
+        public ActionResult Edit([Bind(Include = "TournamentID,TournamentName,LeagueID,Rank")] Tournament tournament)
         {
             if (ModelState.IsValid)
             {

@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel;
-
 namespace tracker.Models
 {
     using System;
@@ -19,11 +17,10 @@ namespace tracker.Models
         public int TournamentScoresID { get; set; }
         public Nullable<int> TournamentID { get; set; }
         public Nullable<int> PlayerID { get; set; }
-        [DisplayName("Points For")]
         public Nullable<int> PointsFor { get; set; }
-        [DisplayName("Points Against")]
         public Nullable<int> PointsAgainst { get; set; }
         public Nullable<int> LeagueID { get; set; }
+        public bool MissedDrives { get; set; }
     
         public virtual League League { get; set; }
         public virtual Player Player { get; set; }

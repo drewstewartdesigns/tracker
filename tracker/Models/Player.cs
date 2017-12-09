@@ -23,9 +23,9 @@ namespace tracker.Models
         }
     
         public int PlayerID { get; set; }
-        [DisplayName("Player")]
+        [DisplayName("Player Name")]
         public string PlayerName { get; set; }
-        [DisplayName("Kik Name")]
+        [DisplayName("KIK Name")]
         public string ChatName { get; set; }
         public Nullable<int> StatusID { get; set; }
         public Nullable<int> LeagueID { get; set; }

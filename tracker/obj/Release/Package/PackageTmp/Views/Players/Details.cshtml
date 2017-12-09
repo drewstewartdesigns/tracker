@@ -50,7 +50,7 @@
         <b>Total Points Scored</b>
     </div>
     <div class="col-xs-6 text-center">
-        <h2>@Html.DisplayFor(model => model.FirstOrDefault().AveragePointsFor)</h2>
+        <h2 class="">@Html.DisplayFor(model => model.FirstOrDefault().AveragePointsFor)</h2>
         <b>Average Points Scored</b>
     </div>
 </div>
@@ -72,10 +72,24 @@
 
 <div class="row">
     <div class="col-xs-12">
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="alert alert-danger text-center @(@ViewBag.MissedDrives > 0 ? "" : "hide")" role="alert">
+            @Html.DisplayFor(model => model.FirstOrDefault().PlayerName) has missed drives in <strong>@ViewBag.MissedDrives tournaments</strong>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
         <table class="table table-striped" style="margin-top: 40px;">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Rank)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentName)
@@ -90,15 +104,18 @@
 
             @foreach (var x in Model.OrderByDescending(x => x.TournamentID))
             {
-                <tr>
+                <tr class="details-row">
                     <th>
-                        @Html.DisplayFor(modelItem => x.TournamentID)
+                        @Html.DisplayFor(modelItem => x.Rank)
                     </th>
                     <td>
                         @Html.DisplayFor(modelItem => x.TournamentName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => x.PointsFor)
+                        <p class="missed-drives @(x.MissedDrives || x.PointsFor == null ? "" : "hidden") ">
+                            Missed Drives
+                        </p>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => x.PointsAgainst)

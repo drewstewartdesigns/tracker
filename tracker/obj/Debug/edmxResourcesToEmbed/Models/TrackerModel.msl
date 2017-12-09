@@ -31,6 +31,7 @@
     <EntitySetMapping Name="Tournaments">
       <EntityTypeMapping TypeName="trackerDBModel.Tournament">
         <MappingFragment StoreEntitySet="Tournament">
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
           <ScalarProperty Name="LeagueID" ColumnName="LeagueID" />
           <ScalarProperty Name="TournamentID" ColumnName="TournamentID" />
           <ScalarProperty Name="TournamentName" ColumnName="TournamentName" />
@@ -40,6 +41,7 @@
     <EntitySetMapping Name="TournamentScores">
       <EntityTypeMapping TypeName="trackerDBModel.TournamentScore">
         <MappingFragment StoreEntitySet="TournamentScores">
+          <ScalarProperty Name="MissedDrives" ColumnName="MissedDrives" />
           <ScalarProperty Name="TournamentScoresID" ColumnName="TournamentScoresID" />
           <ScalarProperty Name="TournamentID" ColumnName="TournamentID" />
           <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />

@@ -17,6 +17,9 @@
         <table class="table table-striped">
             <tr>
                 <th>
+                   Rank
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentName)
                 </th>
                 <th class="text-center">
@@ -28,6 +31,9 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.Rank)
+                    </td>
                     <td style="vertical-align: middle;">
                         @Html.ActionLink(item.TournamentName, "Details", new { id = item.TournamentID })
                     </td>

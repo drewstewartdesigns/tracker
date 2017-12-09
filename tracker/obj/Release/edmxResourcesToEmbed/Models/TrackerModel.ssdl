@@ -31,6 +31,7 @@
     <Property Name="TournamentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TournamentName" Type="nvarchar" MaxLength="50" />
     <Property Name="LeagueID" Type="int" />
+    <Property Name="Rank" Type="int" />
   </EntityType>
   <EntityType Name="TournamentScores">
     <Key>
@@ -42,6 +43,7 @@
     <Property Name="PointsFor" Type="int" />
     <Property Name="PointsAgainst" Type="int" />
     <Property Name="LeagueID" Type="int" />
+    <Property Name="MissedDrives" Type="bit" />
   </EntityType>
   <Association Name="FK_Player_League">
     <End Role="League" Type="Self.League" Multiplicity="0..1">

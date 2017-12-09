@@ -24,9 +24,10 @@ namespace tracker
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/custom.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/custom.css"));
+                      "~/Content/site.css"
+                      ));
         }
     }
 }

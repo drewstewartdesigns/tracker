@@ -3,3 +3,15 @@
         line-height: 2;
     }
 }
+
+.missed-drives {
+        font-size: 12px;
+        font-weight: bold;
+        color: indianred;
+        margin-bottom: 0;
+    }
+
+.table tbody > tr.details-row > td {
+    vertical-align: middle;
+}
+

@@ -42,6 +42,7 @@ namespace tracker.Controllers
             ViewBag.LeagueID = new SelectList(db.Leagues, "LeagueID", "LeagueName", 2);
             ViewBag.PlayerID = new SelectList(db.Players.Where(t => t.StatusID == 1).Include(t => t.League).Where(t => t.LeagueID == 2), "PlayerID", "PlayerName");
             ViewBag.TournamentID = new SelectList(db.Tournaments, "TournamentID", "TournamentName", id);
+            ViewBag.MissedDrives = false;
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
+        public ActionResult Create([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,MissedDrives,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +90,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
+        public ActionResult Edit([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,MissedDrives,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
         {
             if (ModelState.IsValid)
             {

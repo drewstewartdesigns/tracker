@@ -22,8 +22,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.TournamentID, "Tournament Name", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("TournamentID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("TournamentID", null, htmlAttributes: new { @class = "form-control", @disabled=true })
                         @Html.ValidationMessageFor(model => model.TournamentID, "", new { @class = "text-danger" })
+                        @Html.DropDownList("TournamentID", null, htmlAttributes: new { @class = "hidden" })
                     </div>
                 </div>
 
@@ -42,6 +43,16 @@
                         @Html.ValidationMessageFor(model => model.PointsFor, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <div class="checkbox">
+                        <div class="col-md-offset-2 col-md-10">
+                            <label>
+                                @Html.CheckBoxFor(model => model.MissedDrives, new { @type = "checkbox" }) Missed Drives
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.PointsAgainst, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -54,8 +65,9 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.LeagueID, "League", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("LeagueID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("LeagueID", null, htmlAttributes: new { @class = "form-control", @disabled=true })
                         @Html.ValidationMessageFor(model => model.LeagueID, "", new { @class = "text-danger" })
+                        @Html.DropDownList("LeagueID", null, htmlAttributes: new { @class = "hidden" })
                     </div>
                 </div>
 

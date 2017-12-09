@@ -15,6 +15,7 @@
 <div class="row">
     <div class="col-xs-12">
         <h2>@Html.DisplayFor(model => model.FirstOrDefault().TournamentName) <small>details</small></h2>
+        <p>@Html.DisplayFor(model => model.FirstOrDefault().Rank)</p>
     </div>
 </div>
 
@@ -36,14 +37,17 @@
 
             @foreach (var item in Model.OrderByDescending(x => x.TournamentID))
             {
-                <tr>
-                    <td style="vertical-align: middle;">
+                <tr class="details-row">
+                    <td >
                         @Html.ActionLink(item.PlayerName, "Details", "Players", new { id = item.PlayerID }, null)
                     </td>
-                    <td style="vertical-align: middle;">
+                    <td>
                         @Html.DisplayFor(modelItem => item.PointsFor)
+                        <p class="missed-drives @(item.MissedDrives || item.PointsFor == null ? "" : "hidden") ">
+                            Missed Drives
+                        </p>
                     </td>
-                    <td style="vertical-align: middle;">
+                    <td>
                         @Html.DisplayFor(modelItem => item.PointsAgainst)
                     </td>
                     <td>

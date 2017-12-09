@@ -75,7 +75,7 @@
         <table class="table table-striped" style="margin-top: 40px;">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentID)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Rank)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().TournamentName)
@@ -92,7 +92,7 @@
             {
                 <tr>
                     <th>
-                        @Html.DisplayFor(modelItem => x.TournamentID)
+                        @Html.DisplayFor(modelItem => x.Rank)
                     </th>
                     <td>
                         @Html.DisplayFor(modelItem => x.TournamentName)
