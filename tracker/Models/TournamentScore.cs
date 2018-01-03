@@ -20,7 +20,7 @@ namespace tracker.Models
         public Nullable<int> PointsFor { get; set; }
         public Nullable<int> PointsAgainst { get; set; }
         public Nullable<int> LeagueID { get; set; }
-        public bool MissedDrives { get; set; }
+        public Nullable<bool> MissedDrives { get; set; }
     
         public virtual League League { get; set; }
         public virtual Player Player { get; set; }

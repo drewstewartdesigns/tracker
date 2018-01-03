@@ -13,6 +13,8 @@ namespace tracker.ViewModels
         public int PlayerID { get; set; }
         [DisplayName("Player Name")]
         public string PlayerName { get; set; }// Player
+        [DisplayName("Offense Rating")]
+        public Nullable<int> OffenseRating { get; set; }// Player
         [DisplayName("Chat Name")]
         public string ChatName { get; set; }// Player
         [DisplayName("Status")]
@@ -25,6 +27,7 @@ namespace tracker.ViewModels
         public Nullable<int> Rank { get; set; } 
         [DisplayName("#")]
         public int TournamentID { get; set; }// Tournament
+        public int TournamentScoresID { get; set; }
         [DisplayName("Points For")]
         public Nullable<int> PointsFor { get; set; }// TournamentScores
         [DisplayName("Points Against")]
@@ -34,5 +37,7 @@ namespace tracker.ViewModels
         public Nullable<int> TotalPointsAgainst { get; set; }
         public decimal AveragePointsFor { get; set; }
         public decimal AveragePointsAgainst { get; set; }
+        public decimal OffensePowerRanking30 { get; set; }
+        public decimal DefensePowerRanking30 { get; set; }
     }
 }

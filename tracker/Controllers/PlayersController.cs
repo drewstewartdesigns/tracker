@@ -85,7 +85,7 @@ namespace tracker.Controllers
                     tvm.AveragePointsFor = playerStat.TournamentScores.Where(ts => ts.PointsFor != null).Average(x => Convert.ToDecimal(x.PointsFor));
                     tvm.AveragePointsAgainst = playerStat.TournamentScores.Where(ts => ts.PointsAgainst != null).Average(x => Convert.ToDecimal(x.PointsAgainst));
 
-                    ViewBag.MissedDrives = playerStat.TournamentScores.Count(score => score.MissedDrives);
+                    ViewBag.MissedDrives = playerStat.TournamentScores.Count(score => score.MissedDrives == true);
                 }
 
                 PlayersVW.Add(tvm);

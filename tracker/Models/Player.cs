@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel;
-
 namespace tracker.Models
 {
     using System;
@@ -23,13 +21,12 @@ namespace tracker.Models
         }
     
         public int PlayerID { get; set; }
-        [DisplayName("Player Name")]
         public string PlayerName { get; set; }
-        [DisplayName("KIK Name")]
         public string ChatName { get; set; }
         public Nullable<int> StatusID { get; set; }
         public Nullable<int> LeagueID { get; set; }
-
+        public Nullable<int> OffenseRating { get; set; }
+    
         public virtual League League { get; set; }
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

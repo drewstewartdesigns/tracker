@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Players">
       <EntityTypeMapping TypeName="trackerDBModel.Player">
         <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="OffenseRating" ColumnName="OffenseRating" />
           <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
           <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
           <ScalarProperty Name="ChatName" ColumnName="ChatName" />

@@ -138,6 +138,7 @@
     <Compile Include="Controllers\TournamentScoresController.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\PlayersViewModel.cs" />
+    <Compile Include="ViewModels\RankingsViewModel.cs" />
     <Compile Include="ViewModels\TournamentsViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -270,6 +271,7 @@
     <Content Include="Views\Tournaments\Edit.cshtml" />
     <Content Include="Views\Tournaments\Index.cshtml" />
     <Content Include="Views\Home\HowTo.cshtml" />
+    <Content Include="Views\MainTournaments\Rankings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

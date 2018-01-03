@@ -21,6 +21,7 @@
           <Property Name="ChatName" Type="nvarchar" MaxLength="50" />
           <Property Name="StatusID" Type="int" />
           <Property Name="LeagueID" Type="int" />
+          <Property Name="OffenseRating" Type="int" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -183,6 +184,7 @@
           <NavigationProperty Name="League" Relationship="Self.FK_Player_League" FromRole="Player" ToRole="League" />
           <NavigationProperty Name="Status" Relationship="Self.FK_Player_Status" FromRole="Player" ToRole="Status" />
           <NavigationProperty Name="TournamentScores" Relationship="Self.FK_TournamentScores_Player" FromRole="Player" ToRole="TournamentScores" />
+          <Property Name="OffenseRating" Type="Int32" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -342,6 +344,7 @@
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="trackerDBModel.Player">
               <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="OffenseRating" ColumnName="OffenseRating" />
                 <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
                 <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
                 <ScalarProperty Name="ChatName" ColumnName="ChatName" />

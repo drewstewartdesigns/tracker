@@ -82,6 +82,8 @@ namespace tracker.Controllers
                     tvm.TotalPointsAgainst = playerStat.TournamentScores.Sum(x => x.PointsAgainst);
                     tvm.AveragePointsFor = playerStat.TournamentScores.Where(ts => ts.PointsFor != null).Average(x => Convert.ToDecimal(x.PointsFor));
                     tvm.AveragePointsAgainst = playerStat.TournamentScores.Where(ts => ts.PointsAgainst != null).Average(x => Convert.ToDecimal(x.PointsAgainst));
+                    tvm.OffensePowerRanking30 = playerStat.TournamentScores.OrderByDescending(ts => ts.TournamentID).Take(30).Average(x => Convert.ToDecimal(x.PointsFor));
+                    tvm.DefensePowerRanking30 = playerStat.TournamentScores.OrderByDescending(ts => ts.TournamentID).Take(30).Average(x => Convert.ToDecimal(x.PointsAgainst));
                 }
 
                 PlayersVW.Add(tvm);
@@ -105,7 +107,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID")] Player player)
+        public ActionResult Create([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID,OffenseRating")] Player player)
         {
             if (ModelState.IsValid)
             {
@@ -141,7 +143,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID")] Player player)
+        public ActionResult Edit([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID,OffenseRating")] Player player)
         {
             if (ModelState.IsValid)
             {

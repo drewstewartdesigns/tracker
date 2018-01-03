@@ -22,6 +22,7 @@
     <NavigationProperty Name="League" Relationship="Self.FK_Player_League" FromRole="Player" ToRole="League" />
     <NavigationProperty Name="Status" Relationship="Self.FK_Player_Status" FromRole="Player" ToRole="Status" />
     <NavigationProperty Name="TournamentScores" Relationship="Self.FK_TournamentScores_Player" FromRole="Player" ToRole="TournamentScores" />
+    <Property Name="OffenseRating" Type="Int32" />
   </EntityType>
   <EntityType Name="Status">
     <Key>

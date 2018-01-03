@@ -16,6 +16,7 @@
     <Property Name="ChatName" Type="nvarchar" MaxLength="50" />
     <Property Name="StatusID" Type="int" />
     <Property Name="LeagueID" Type="int" />
+    <Property Name="OffenseRating" Type="int" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
