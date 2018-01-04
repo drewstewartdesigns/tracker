@@ -43,7 +43,7 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PointsFor)
-                        <p class="missed-drives @(item.MissedDrives || item.PointsFor == null ? "" : "hidden") ">
+                        <p class="missed-drives @(item.MissedDrives.GetValueOrDefault() || item.PointsFor == null ? "" : "hidden") ">
                             Missed Drives
                         </p>
                     </td>

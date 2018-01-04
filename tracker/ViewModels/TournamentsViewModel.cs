@@ -17,15 +17,15 @@ namespace tracker.ViewModels
         [DisplayName("Opponent")]
         public string TournamentName { get; set; }// Tournament
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
-        public Nullable<int> Rank { get; set; } 
+        public int? Rank { get; set; } 
         public int TournamentID { get; set; }
         public int TournamentScoresID { get; set; }
         [DisplayName("Points For")]
-        public Nullable<int> PointsFor { get; set; }
+        public int? PointsFor { get; set; }
         [DisplayName("Points Against")]
-        public Nullable<int> PointsAgainst { get; set; }
-        public Nullable<int> TotalPointsFor { get; set; }
-        public Nullable<int> TotalPointsAgainst { get; set; }
-        public Nullable<bool> MissedDrives { get; set; }
+        public int? PointsAgainst { get; set; }
+        public int? TotalPointsFor { get; set; }
+        public int? TotalPointsAgainst { get; set; }
+        public bool? MissedDrives { get; set; }
     }
 }

@@ -4,6 +4,7 @@ C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\Antlr3.Runtime.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\EntityFramework.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\EntityFramework.SqlServer.dll
+C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\EPPlus.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\Newtonsoft.Json.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.dll
@@ -18,6 +19,7 @@ C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\WebGrease.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\EntityFramework.xml
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\EntityFramework.SqlServer.xml
+C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\EPPlus.xml
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.xml
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\PagedList.Mvc.xml
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\System.Web.Helpers.xml
@@ -31,4 +33,3 @@ C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\bin\Newtonsoft.Json.xml
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\obj\Debug\tracker.dll
 C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\obj\Debug\tracker.pdb
-C:\Users\dstewart.OHIO-CPA\Documents\Visual Studio 2013\Projects\tracker\tracker\obj\Debug\tracker.csprojResolveAssemblyReference.cache

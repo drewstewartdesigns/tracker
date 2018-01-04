@@ -51,7 +51,10 @@
                     <div class="checkbox">
                         <div class="col-md-offset-2 col-md-10">
                             <label>
-                                @Html.CheckBoxFor(model => model.MissedDrives, new { @type = "checkbox" }) Missed Drives
+                                @{
+                                    var missedDrives = Model.MissedDrives.GetValueOrDefault();
+                                }
+                                @Html.CheckBoxFor(model => @missedDrives, new { @type = "checkbox" }) Missed Drives
                             </label>
                         </div>
                     </div>

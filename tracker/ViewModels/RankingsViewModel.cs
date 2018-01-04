@@ -13,7 +13,7 @@ namespace tracker.ViewModels
         public int PlayerID { get; set; }
         [DisplayName("Player")]
         public string PlayerName { get; set; }// Player
-        public Nullable<int> OffenseRating { get; set; } 
+        public int? OffenseRating { get; set; } 
         public int TournamentID { get; set; }
         public int TournamentScoresID { get; set; }
 

@@ -1,4 +1,5 @@
-﻿@model tracker.Models.TournamentScore
+﻿@using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical
+@model tracker.Models.TournamentScore
 
 @{
     ViewBag.Title = "Add Tournament Score";
@@ -48,7 +49,10 @@
                     <div class="checkbox">
                         <div class="col-md-offset-2 col-md-10">
                             <label>
-                                @Html.CheckBoxFor(model => model.MissedDrives, new { @type="checkbox" }) Missed Drives
+                                @{
+                                    var missedDrives = false;
+                                }
+                                @Html.CheckBoxFor(model => @missedDrives, new { @type = "checkbox" }) Missed Drives
                             </label>
                         </div>
                     </div>
