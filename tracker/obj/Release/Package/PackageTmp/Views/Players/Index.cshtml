@@ -27,6 +27,10 @@
             <div class="tab-pane active" id="activePlayers">
                 <table class="table table-striped">
                     <tr>
+                        <th>Id</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OffenseRating)
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.PlayerName)
                         </th>
@@ -39,6 +43,12 @@
                     @foreach (var item in Model.Where(item => item.StatusID == 1))
                     {
                         <tr>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.PlayerID)
+                            </td>
+                            <td style="vertical-align: middle;">
+                                @Html.DisplayFor(modelItem => item.OffenseRating)
+                            </td>
                             <td style="vertical-align: middle;">
                                 @Html.DisplayFor(modelItem => item.PlayerName)
                             </td>

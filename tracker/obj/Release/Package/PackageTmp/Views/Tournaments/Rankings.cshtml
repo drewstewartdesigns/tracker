@@ -1,0 +1,179 @@
+﻿@model IEnumerable<tracker.ViewModels.RankingsViewModel>
+@{
+    ViewBag.Title = "Rankings";
+}
+
+<h2>Rankings</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="nav nav-tabs" style="margin-top: 40px;">
+            <li role="presentation" class="active"><a href="#power" data-toggle="tab">Power Rank</a></li>
+            <li role="presentation"><a href="#sevenDay" data-toggle="tab">7 Day</a></li>
+            <li role="presentation"><a href="#fourteenDay" data-toggle="tab">14 Day</a></li>
+            <li role="presentation"><a href="#twentyEightDay" data-toggle="tab">28 Day</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="tab-content">
+            <div class="tab-pane active" id="power">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            Avg.
+                        </th>
+                        <th>
+                            5x Avg.
+                        </th>
+                        <th>
+                            Off. Ovr.
+                        </th>
+                        <th>
+                            Ladder
+                        </th>
+                    </tr>
+                    @{ int powerIndex = 1; }
+                    @foreach (var item in Model.OrderByDescending(t => t.PowerRating))
+                    {
+                        <tr>
+                            <td>
+                                @powerIndex @{ powerIndex++; }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OffenseRanking14)
+                            </td>
+                            <td>
+                                @{ decimal blendedAverage = Math.Round(item.OffenseRanking14 * 5, 2); }
+                                @blendedAverage
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OffenseRating)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PowerRating)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="tab-pane" id="sevenDay">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            7 Day Score
+                        </th>
+                        <th>
+                            Change
+                        </th>
+                    </tr>
+                    @{ int index7 = 1; }
+                    @foreach (var item in Model.OrderByDescending(t => t.OffenseRanking7))
+                    {
+                        <tr>
+                            <td>
+                                @index7 @{ index7++; }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OffenseRanking7)
+                            </td>
+                            <td class="@(item.OffenseRanking14 >= item.OffenseRanking7 ? "text-danger" : "text-success")">
+                                @Math.Round(item.OffenseRanking7 - item.OffenseRanking14, 2)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="tab-pane" id="fourteenDay">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            14 Day Score
+                        </th>
+                        <th>
+                            Change
+                        </th>
+                    </tr>
+                    @{ int index14 = 1; }
+                    @foreach (var item in Model.OrderByDescending(t => t.OffenseRanking14))
+                    {
+                        <tr>
+                            <td>
+                                @index14 @{ index14++; }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OffenseRanking14)
+                            </td>
+                            <td class="@(item.OffenseRanking28 >= item.OffenseRanking14 ? "text-danger" : "text-success")">
+                                @Math.Round(item.OffenseRanking14 - item.OffenseRanking28, 2)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="tab-pane" id="twentyEightDay">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            28 Day Score
+                        </th>
+                        <th>
+                            Change
+                        </th>
+                    </tr>
+                    @{ int index28 = 1; }
+                    @foreach (var item in Model.OrderByDescending(t => t.OffenseRanking28))
+                    {
+                        <tr>
+                            <td>
+                                @index28 @{ index28++; }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OffenseRanking28)
+                            </td>
+                            <td class="@(item.OffenseRanking35 >= item.OffenseRanking28 ? "text-danger" : "text-success")">
+                                @Math.Round(item.OffenseRanking28 - item.OffenseRanking35, 2)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

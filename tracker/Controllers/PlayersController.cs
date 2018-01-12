@@ -109,7 +109,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID")] Player player)
+        public ActionResult Create([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID,OffenseRating")] Player player)
         {
             if (ModelState.IsValid)
             {
@@ -145,7 +145,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID")] Player player)
+        public ActionResult Edit([Bind(Include = "PlayerID,PlayerName,ChatName,StatusID,LeagueID,OffenseRating")] Player player)
         {
             if (ModelState.IsValid)
             {

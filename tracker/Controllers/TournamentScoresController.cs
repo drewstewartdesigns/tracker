@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using tracker.Models;
+using OfficeOpenXml;
+using tracker.ViewModels;
 
 namespace tracker.Controllers
 {
@@ -65,6 +69,50 @@ namespace tracker.Controllers
             ViewBag.PlayerID = new SelectList(db.Players, "PlayerID", "PlayerName", tournamentScore.PlayerID);
             ViewBag.TournamentID = new SelectList(db.Tournaments, "TournamentID", "TournamentName", tournamentScore.TournamentID);
             return View(tournamentScore);
+        }
+
+
+        public ActionResult Upload()
+        {
+            return View();
+        }
+        // POST: TournamentScores/Upload
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Upload(HttpPostedFileBase postedFile)
+        {
+            if (postedFile != null)
+            {
+                ExcelPackage package = new ExcelPackage(postedFile.InputStream);
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
+
+                TournamentScore tournamentScore = new TournamentScore();
+                
+                int rowLength = worksheet.Dimension.End.Row;
+                int colLength = worksheet.Dimension.End.Column;
+
+                // plus 1 to avoid headers
+                for (int rowIndex = worksheet.Dimension.Start.Row + 1; rowIndex <= rowLength; rowIndex++)
+                {
+                    // don't include benched players
+                    if (worksheet.Cells[rowIndex, 8].GetValue<int>() != 1)
+                    {
+                        tournamentScore.TournamentID = worksheet.Cells[rowIndex, 1].GetValue<int>();
+                        tournamentScore.LeagueID = worksheet.Cells[rowIndex, 2].GetValue<int>();
+                        tournamentScore.PlayerID = worksheet.Cells[rowIndex, 3].GetValue<int>();
+                        tournamentScore.PointsFor = worksheet.Cells[rowIndex, 5].GetValue<int>();
+                        tournamentScore.PointsAgainst = worksheet.Cells[rowIndex, 6].GetValue<int>();
+                        tournamentScore.MissedDrives = worksheet.Cells[rowIndex, 7].GetValue<bool>();
+
+                        db.TournamentScores.Add(tournamentScore);
+                        db.SaveChanges();
+                    }
+                }
+
+                //ViewBag.Message = "File uploaded successfully.";
+            }
+
+            return View();
         }
 
         // GET: TournamentScores/Edit/5

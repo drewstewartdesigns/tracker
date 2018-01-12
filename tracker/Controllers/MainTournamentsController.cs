@@ -20,14 +20,6 @@ namespace tracker.Controllers
         {
             List<RankingsViewModel> TournamentsVW = new List<RankingsViewModel>();
 
-            var tournamentList =
-                db.Tournaments.Include(t => t.League)
-                    .Where(t => t.LeagueID == 1)
-                    .Include(t => t.TournamentScores)
-                    .OrderByDescending(t => t.TournamentID)
-                    .Take(30)
-                    .ToList();
-
             var playerList =
                 db.Players.Where(p => p.StatusID == 1 && p.LeagueID == 1).Distinct();
 
@@ -39,34 +31,39 @@ namespace tracker.Controllers
                 tvm.PlayerName = player.PlayerName;
                 tvm.OffenseRating = player.OffenseRating;
 
-                tvm.OffenseRanking35 =
-                    player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
-                        .Take(35)
-                        .Average(x => Convert.ToDecimal(x.PointsFor));
+                var playerTournamentList = player.TournamentScores.ToList();
 
-                tvm.OffenseRanking28 =
-                    player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
-                        .Take(28)
-                        .Average(x => Convert.ToDecimal(x.PointsFor));
-
-                tvm.OffenseRanking14 =
-                    player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
-                        .Take(14)
-                        .Average(x => Convert.ToDecimal(x.PointsFor));
-
-                tvm.OffenseRanking7 =
-                    player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
-                        .Take(7)
-                        .Average(x => Convert.ToDecimal(x.PointsFor));
-
-                int? _offenseRating = 0;
-                if (player.OffenseRating.HasValue)
+                if (playerTournamentList.Count > 0)
                 {
-                    _offenseRating = player.OffenseRating;
-                }
-                tvm.PowerRating = Convert.ToDecimal(tvm.OffenseRanking14*5 + _offenseRating);
+                    tvm.OffenseRanking35 =
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
+                            .Take(35)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
 
-                TournamentsVW.Add(tvm);
+                    tvm.OffenseRanking28 =
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
+                            .Take(28)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
+
+                    tvm.OffenseRanking14 =
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
+                            .Take(14)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
+
+                    tvm.OffenseRanking7 =
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
+                            .Take(7)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
+
+                    int? _offenseRating = 0;
+                    if (player.OffenseRating.HasValue)
+                    {
+                        _offenseRating = player.OffenseRating;
+                    }
+                    tvm.PowerRating = Convert.ToDecimal(tvm.OffenseRanking14 * 5 + _offenseRating);
+
+                    TournamentsVW.Add(tvm);   
+                }
             }
 
 

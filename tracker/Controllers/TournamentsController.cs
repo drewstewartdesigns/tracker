@@ -16,6 +16,60 @@ namespace tracker.Controllers
     {
         private trackerDBEntities db = new trackerDBEntities();
 
+        public ActionResult Rankings()
+        {
+            List<RankingsViewModel> TournamentsVW = new List<RankingsViewModel>();
+
+            var playerList =
+                db.Players.Where(p => p.StatusID == 1 && p.LeagueID == 2).Distinct();
+
+
+            foreach (var player in playerList)
+            {
+                RankingsViewModel tvm = new RankingsViewModel();
+
+                tvm.PlayerName = player.PlayerName;
+                tvm.OffenseRating = player.OffenseRating;
+
+                var playerTournamentList = player.TournamentScores.ToList();
+
+                if (playerTournamentList.Count > 0)
+                {
+                    tvm.OffenseRanking35 =
+                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
+                            .Take(35)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
+
+                    tvm.OffenseRanking28 =
+                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
+                            .Take(28)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
+
+                    tvm.OffenseRanking14 =
+                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
+                            .Take(14)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
+
+                    tvm.OffenseRanking7 =
+                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
+                            .Take(7)
+                            .Average(x => Convert.ToDecimal(x.PointsFor));
+
+                    int? _offenseRating = 0;
+                    if (player.OffenseRating.HasValue)
+                    {
+                        _offenseRating = player.OffenseRating;
+                    }
+                    tvm.PowerRating = Convert.ToDecimal(tvm.OffenseRanking14 * 5 + _offenseRating);
+
+                    TournamentsVW.Add(tvm);   
+                }
+            }
+
+
+            return View(TournamentsVW.ToList());
+        }
+
         // GET: Tournaments
         public ActionResult Index(int? page)
         {

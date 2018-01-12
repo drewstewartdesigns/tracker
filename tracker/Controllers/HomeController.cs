@@ -15,22 +15,10 @@ namespace tracker.Controllers
 
         public ActionResult Index()
         {
-            List<HomeViewModel> HomeVM = new List<HomeViewModel>();
 
-            var tournamentScores = db.TournamentScores.Include(ts => ts.Tournament);
+           
 
-            foreach (var tournamentScore in tournamentScores)
-            {
-                HomeViewModel hvm = new HomeViewModel();
-
-
-
-                hvm.TotalPointsFor = tournamentScore.Player.TournamentScores.Sum(ts => ts.PointsFor);
-
-                HomeVM.Add(hvm);
-            }
-
-            return View(HomeVM.ToList());
+            return View();
         }
 
         public ActionResult About()
