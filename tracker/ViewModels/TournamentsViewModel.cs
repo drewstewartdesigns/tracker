@@ -27,5 +27,6 @@ namespace tracker.ViewModels
         public int? TotalPointsFor { get; set; }
         public int? TotalPointsAgainst { get; set; }
         public bool? MissedDrives { get; set; }
+        public int? DefenseAgainst { get; set; }
     }
 }

@@ -278,6 +278,7 @@
     <Content Include="Views\MainTournaments\Rankings.cshtml" />
     <Content Include="Views\TournamentScores\Upload.cshtml" />
     <Content Include="Views\Tournaments\Rankings.cshtml" />
+    <Content Include="Views\MainTournaments\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,7 +16,7 @@ namespace tracker.Controllers
     {
         private trackerDBEntities db = new trackerDBEntities();
 
-        public ActionResult Rankings()
+        public ActionResult Rankings(string sortOrder)
         {
             List<RankingsViewModel> TournamentsVW = new List<RankingsViewModel>();
 
@@ -35,24 +35,41 @@ namespace tracker.Controllers
 
                 if (playerTournamentList.Count > 0)
                 {
+                    tvm.Average20PointsFor =
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
+                            .Take(20)
+                            .Average(x => Convert.ToDouble(x.PointsFor));
+
+                    tvm.Average20PointsAgainst =
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
+                            .Take(20)
+                            .Average(x => Convert.ToDouble(x.PointsAgainst));
+
+                    tvm.Average20DefenseAgainst =
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
+                            .Take(20)
+                            .Where(ts => ts.DefenseAgainst != null)
+                            .Average(x => Convert.ToDouble(x.DefenseAgainst));
+
+                    var pf = tvm.Average20PointsFor * 580;
+                    var da = 195 - tvm.Average20DefenseAgainst;
+                    var pa = tvm.Average20PointsAgainst * 1.4;
+
+                    tvm.Grade = pf / da - pa;
+
                     tvm.OffenseRanking35 =
-                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
                             .Take(35)
                             .Average(x => Convert.ToDecimal(x.PointsFor));
 
                     tvm.OffenseRanking28 =
-                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
                             .Take(28)
                             .Average(x => Convert.ToDecimal(x.PointsFor));
 
                     tvm.OffenseRanking14 =
-                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
+                        player.TournamentScores.OrderByDescending(ts => ts.TournamentID)
                             .Take(14)
-                            .Average(x => Convert.ToDecimal(x.PointsFor));
-
-                    tvm.OffenseRanking7 =
-                        playerTournamentList.OrderByDescending(ts => ts.TournamentID)
-                            .Take(7)
                             .Average(x => Convert.ToDecimal(x.PointsFor));
 
                     int? _offenseRating = 0;
@@ -60,14 +77,34 @@ namespace tracker.Controllers
                     {
                         _offenseRating = player.OffenseRating;
                     }
-                    tvm.PowerRating = Convert.ToDecimal(tvm.OffenseRanking14 * 5 + _offenseRating);
+                    //tvm.PowerRating = Convert.ToDecimal(tvm.OffenseRanking28 * 5 + _offenseRating);
+                    //tvm.PowerRating = Convert.ToDouble((tvm.Average20PointsFor * 5) / tvm.Average20DefenseAgainst + tvm.OffenseRating);
+                    tvm.Ladder = Convert.ToDouble((tvm.Average20PointsFor * tvm.Average20DefenseAgainst) / 20 + tvm.OffenseRating);
 
-                    TournamentsVW.Add(tvm);   
+                    TournamentsVW.Add(tvm);
                 }
             }
 
+            ViewBag.GradeSortParam = String.IsNullOrEmpty(sortOrder) ? "Grade" : "";
+            ViewBag.LadderSortParam = sortOrder == "Ladder" ? "Ladder_desc" : "Ladder";
 
-            return View(TournamentsVW.ToList());
+            switch (sortOrder)
+            {
+                case "Ladder_desc":
+                    TournamentsVW = TournamentsVW.OrderByDescending(ts => ts.Ladder).ToList();
+                    break;
+                case "Grade":
+                    TournamentsVW = TournamentsVW.OrderBy(t => t.Grade).ToList();
+                    break;
+                case "Ladder":
+                    TournamentsVW = TournamentsVW.OrderBy(t => t.Ladder).ToList();
+                    break;
+                default:
+                    TournamentsVW = TournamentsVW.OrderByDescending(t => t.Grade).ToList();
+                    break;
+            }
+
+            return View(TournamentsVW);
         }
 
         // GET: Tournaments

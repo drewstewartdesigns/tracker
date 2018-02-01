@@ -51,7 +51,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
+        public ActionResult Create([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,PointsAgainst,LeagueID,DefenseAgainst")] TournamentScore tournamentScore)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
+        public ActionResult Edit([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,PointsAgainst,LeagueID,DefenseAgainst")] TournamentScore tournamentScore)
         {
             if (ModelState.IsValid)
             {

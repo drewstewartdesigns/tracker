@@ -15,16 +15,19 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Player.PlayerName)
+                    Player
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Tournament.TournamentName)
+                    Opponent
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PointsFor)
+                    Pts. For
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PointsAgainst)
+                    Def. Against
+                </th>
+                <th>
+                    Pts. Against
                 </th>
                 <th></th>
             </tr>
@@ -40,6 +43,9 @@
                     </td>
                     <td style="vertical-align: middle;">
                         @Html.DisplayFor(modelItem => item.PointsFor)
+                    </td>
+                    <td style="vertical-align: middle;">
+                        @Html.DisplayFor(modelItem => item.DefenseAgainst)
                     </td>
                     <td style="vertical-align: middle;">
                         @Html.DisplayFor(modelItem => item.PointsAgainst)

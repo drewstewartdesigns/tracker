@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using tracker.Models;
 using OfficeOpenXml;
 using tracker.ViewModels;
@@ -55,7 +56,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,MissedDrives,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
+        public ActionResult Create([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,MissedDrives,PointsAgainst,LeagueID,DefenseAgainst")] TournamentScore tournamentScore)
         {
             if (ModelState.IsValid)
             {
@@ -89,20 +90,21 @@ namespace tracker.Controllers
                 TournamentScore tournamentScore = new TournamentScore();
                 
                 int rowLength = worksheet.Dimension.End.Row;
-                int colLength = worksheet.Dimension.End.Column;
 
                 // plus 1 to avoid headers
                 for (int rowIndex = worksheet.Dimension.Start.Row + 1; rowIndex <= rowLength; rowIndex++)
                 {
-                    // don't include benched players
-                    if (worksheet.Cells[rowIndex, 8].GetValue<int>() != 1)
+                    var playerId = worksheet.Cells[rowIndex, 3].Value;
+                    // don't include benched players or rows without a playerID
+                    if (worksheet.Cells[rowIndex, 9].GetValue<int>() != 1 && playerId != null)
                     {
                         tournamentScore.TournamentID = worksheet.Cells[rowIndex, 1].GetValue<int>();
                         tournamentScore.LeagueID = worksheet.Cells[rowIndex, 2].GetValue<int>();
                         tournamentScore.PlayerID = worksheet.Cells[rowIndex, 3].GetValue<int>();
                         tournamentScore.PointsFor = worksheet.Cells[rowIndex, 5].GetValue<int>();
                         tournamentScore.PointsAgainst = worksheet.Cells[rowIndex, 6].GetValue<int>();
-                        tournamentScore.MissedDrives = worksheet.Cells[rowIndex, 7].GetValue<bool>();
+                        tournamentScore.MissedDrives = worksheet.Cells[rowIndex, 8].GetValue<bool>();
+                        tournamentScore.DefenseAgainst = worksheet.Cells[rowIndex, 7].GetValue<int>();
 
                         db.TournamentScores.Add(tournamentScore);
                         db.SaveChanges();
@@ -138,7 +140,7 @@ namespace tracker.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,MissedDrives,PointsAgainst,LeagueID")] TournamentScore tournamentScore)
+        public ActionResult Edit([Bind(Include = "TournamentScoresID,TournamentID,PlayerID,PointsFor,MissedDrives,PointsAgainst,LeagueID,DefenseAgainst")] TournamentScore tournamentScore)
         {
             if (ModelState.IsValid)
             {

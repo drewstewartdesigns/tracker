@@ -8,8 +8,8 @@
 <div class="row">
     <div class="col-xs-12">
         <ul class="nav nav-tabs" style="margin-top: 40px;">
-            <li role="presentation" class="active"><a href="#power" data-toggle="tab">Power Rank</a></li>
-            <li role="presentation"><a href="#sevenDay" data-toggle="tab">7 Day</a></li>
+            <li role="presentation" class="active"><a href="#grade" data-toggle="tab">Grade</a></li>
+            @*<li role="presentation"><a href="#power" data-toggle="tab">Power Rank</a></li>*@
             <li role="presentation"><a href="#fourteenDay" data-toggle="tab">14 Day</a></li>
             <li role="presentation"><a href="#twentyEightDay" data-toggle="tab">28 Day</a></li>
         </ul>
@@ -19,7 +19,34 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="tab-content">
-            <div class="tab-pane active" id="power">
+            <div class="tab-pane active" id="grade">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div style="display: flex; padding: 10px 20px 0; background-color: #f9f9f9;">
+                            <p style="margin-right: 20px;"><b>Ladder</b> <i>(formula)</i>:</p>
+                            <p>(Points Scored * Opponents Defense) / 20 + Offense Rating</p>
+                        </div>
+                        <div style="display: flex; padding: 0 20px; background-color: #f9f9f9;">
+                            <p style="margin-right: 20px;"><b>Ladder</b> <i>(explained)</i>:</p>
+                            <p>
+                                +1 to Ladder by increasing Offense Rating 1 point or increasing Opponents Defense
+                                average by 1.<br />+5 to Ladder by increasing your Points Scored by 1 point.
+                            </p>
+                        </div>
+                        
+                        <div style="display: flex; padding: 10px 20px 0;">
+                            <p style="margin-right: 20px;"><b>Grade</b> <i>(formula)</i>:</p>
+                            <p>((Points Scored * 580) / (195 - Opponents Defense)) - (Points Against * 1.4)</p>
+                        </div>
+                        <div style="display: flex; padding: 0 20px;">
+                            <p style="margin-right: 20px;"><b>Grade</b> <i>(explained)</i>:</p>
+                            <p>
+                                Grade uses your defensive performance to show how much you are contributing to the league.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <table class="table table-striped">
                     <tr>
                         <th>
@@ -28,7 +55,65 @@
                             Player
                         </th>
                         <th>
-                            Avg.
+                            Pts. Scored
+                        </th>
+                        <th>
+                            Oppon. Def.
+                        </th>
+                        <th>
+                            Pts. Allowed
+                        </th>
+                        <th>
+                            @Html.ActionLink("Grade", "Rankings", new { sortOrder = ViewBag.GradeSortParam })
+                        </th>
+                        <th>
+                            @Html.ActionLink("Ladder", "Rankings", new { sortOrder = ViewBag.LadderSortParam })
+                        </th>
+                    </tr>
+                    @{ int gradeIndex = 1; }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @gradeIndex @{ gradeIndex++; }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlayerName)
+                            </td>
+                            <td>
+                                @{ double pf = Math.Round(item.Average20PointsFor, 2); }
+                                @pf
+                            </td>
+                            <td>
+                                @{ double da = Math.Round(item.Average20DefenseAgainst, 2); }
+                                @da
+                            </td>
+                            <td>
+                                @{ double pa = Math.Round(item.Average20PointsAgainst, 2); }
+                                @pa
+                            </td>
+                            <td>
+                                @{ double gr = Math.Round(item.Grade, 2); }
+                                @gr
+                            </td>
+                            <td>
+                                @{ double pr = Math.Round(item.Ladder, 2); }
+                                @pr
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            @*<div class="tab-pane" id="power">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Player
+                        </th>
+                        <th>
+                            Pts Scored
                         </th>
                         <th>
                             5x Avg.
@@ -51,57 +136,24 @@
                                 @Html.DisplayFor(modelItem => item.PlayerName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.OffenseRanking14)
+                                @{ double pf = Math.Round(item.Average20PointsFor, 2); }
+                                @pf
                             </td>
                             <td>
-                                @{ decimal blendedAverage = Math.Round(item.OffenseRanking14*5, 2); }
+                                @{ double blendedAverage = Math.Round(item.Average20PointsFor * 5, 2); }
                                 @blendedAverage
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.OffenseRating)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.PowerRating)
+                                @{ double pr = Math.Round(item.PowerRating, 2); }
+                                @pr
                             </td>
                         </tr>
                     }
                 </table>
-            </div>
-            <div class="tab-pane" id="sevenDay">
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                        </th>
-                        <th>
-                            Player
-                        </th>
-                        <th>
-                            7 Day Score
-                        </th>
-                        <th>
-                            Change
-                        </th>
-                    </tr>
-                    @{ int index7 = 1; }
-                    @foreach (var item in Model.OrderByDescending(t => t.OffenseRanking7))
-                    {
-                        <tr>
-                            <td>
-                                @index7 @{ index7++; }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PlayerName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OffenseRanking7)
-                            </td>
-                            <td class="@(item.OffenseRanking14 >= item.OffenseRanking7 ? "text-danger" : "text-success")">
-                                @Math.Round(item.OffenseRanking7 - item.OffenseRanking14, 2)
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>
+            </div>*@
 
             <div class="tab-pane" id="fourteenDay">
                 <table class="table table-striped">

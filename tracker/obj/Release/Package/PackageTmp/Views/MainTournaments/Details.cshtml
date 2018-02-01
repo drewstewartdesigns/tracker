@@ -24,13 +24,16 @@
         <table class="table table-striped">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.PlayerName)
+                    Player
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PointsFor)
+                    Pts. For
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PointsAgainst)
+                    Def. Against
+                </th>
+                <th>
+                    Pts. Against
                 </th>
                 <th></th>
             </tr>
@@ -46,6 +49,9 @@
                         <p class="missed-drives @(item.MissedDrives.GetValueOrDefault() || item.PointsFor == null ? "" : "hidden") ">
                             Missed Drives
                         </p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DefenseAgainst)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PointsAgainst)

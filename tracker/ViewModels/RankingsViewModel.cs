@@ -22,7 +22,12 @@ namespace tracker.ViewModels
         public decimal OffenseRanking14 { get; set; }
         public decimal OffenseRanking7 { get; set; }
 
-        public decimal PowerRating { get; set; }
+        public double Average20PointsFor { get; set; }
+        public double Average20PointsAgainst { get; set; }
+        public double Average20DefenseAgainst { get; set; }
+        public double Grade { get; set; }
+
+        public double Ladder { get; set; }
 
         public decimal DefensePowerRanking30 { get; set; }
     }

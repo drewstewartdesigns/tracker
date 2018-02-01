@@ -50,6 +50,7 @@
           <Property Name="PointsAgainst" Type="int" />
           <Property Name="LeagueID" Type="int" />
           <Property Name="MissedDrives" Type="bit" />
+          <Property Name="DefenseAgainst" Type="int" />
         </EntityType>
         <Association Name="FK_Player_League">
           <End Role="League" Type="Self.League" Multiplicity="0..1">
@@ -219,6 +220,7 @@
           <NavigationProperty Name="Player" Relationship="Self.FK_TournamentScores_Player" FromRole="TournamentScores" ToRole="Player" />
           <NavigationProperty Name="Tournament" Relationship="Self.FK_TournamentScores_Tournament" FromRole="TournamentScores" ToRole="Tournament" />
           <Property Name="MissedDrives" Type="Boolean" />
+          <Property Name="DefenseAgainst" Type="Int32" />
         </EntityType>
         <Association Name="FK_Player_League">
           <End Role="League" Type="Self.League" Multiplicity="0..1">
@@ -374,6 +376,7 @@
           <EntitySetMapping Name="TournamentScores">
             <EntityTypeMapping TypeName="trackerDBModel.TournamentScore">
               <MappingFragment StoreEntitySet="TournamentScores">
+                <ScalarProperty Name="DefenseAgainst" ColumnName="DefenseAgainst" />
                 <ScalarProperty Name="MissedDrives" ColumnName="MissedDrives" />
                 <ScalarProperty Name="TournamentScoresID" ColumnName="TournamentScoresID" />
                 <ScalarProperty Name="TournamentID" ColumnName="TournamentID" />
